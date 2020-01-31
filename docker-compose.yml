@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+    ms-web:
+        build: ./docker/ms-web
+        container_name: ms-web
+        ports:
+            - "80:80"
+        volumes:
+            - "./html/ms-web/:/var/www/html/"
+    ms-bff:
+        build: ./docker/ms-bff
+        container_name: ms-bff
+        ports:
+            - "49513:80"
+        volumes:
+            - "./html/ms-bff/:/var/www/html/"
+    ms-api-gateway:
+        build: ./docker/ms-api-gateway
+        container_name: ms-api-gateway
+        ports:
+            - "49514:80"
+        volumes:
+            - "./html/ms-api-gateway/:/var/www/html/"
+    ms-api-web:
+        build: .
+        command: bundle exec rails s -p 3000 -b '0.0.0.0'
+        container_name: ms-api-web
+        volumes:
+            - .:/myapp
+        ports:
+            - "3000:3000"
+        links:
+            - ms-api-db
+    ms-api-db:
+        image: mysql:5.7
+        container_name: "ms-api-db"
+        environment:
+            MYSQL_ROOT_PASSWORD: password
