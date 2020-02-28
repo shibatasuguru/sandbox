@@ -21,14 +21,14 @@ yarn init --yes
   "dependencies": {
     "axios": "^0.16.2",
     "dotenv": "^8.2.0",
-    "querystring": "^0.2.0",
-    "readline-sync": "^1.4.10"
+    "querystring": "^0.2.0"
   }
 }
 ```
 
 # npm install
 npm install
+npm install --save readline-async
 
 # .env ‚Ìƒg[ƒNƒ“‚ğ‘‚«Š·‚¦‚é
 
